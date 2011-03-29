@@ -104,7 +104,7 @@ set of 256 colors. It isn't bad looking and has been extensively tweaked, but
 it's still not quite the real thing.
 
 If you do use the custom terminal colors, simply add the following line 
-*before* the `colorschem solarized` line:
+*before* the `colorscheme solarized` line:
 
     let g:solarized_termcolors=16
 
