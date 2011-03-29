@@ -189,11 +189,11 @@ Here's a quick script that toggles the background color, using F5 in this
 example. You can drop this into .vimrc:
 
     function! ToggleBackground()
-        if (w:solarized_style=="dark")
-        let w:solarized_style="light"
+        if (g:solarized_style=="dark")
+        let g:solarized_style="light"
         colorscheme solarized
     else
-        let w:solarized_style="dark"
+        let g:solarized_style="dark"
         colorscheme solarized
     endif
     endfunction
