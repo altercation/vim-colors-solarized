@@ -9,8 +9,8 @@ endif
 let g:loaded_togglebg = 1
 
 " noremap is a bit misleading here if you are unused to vim mapping.
-" in fact, there is remapping, but only of script locally defined remaps, in 
-" this case <SID>TogBG. The <script> argument modifies the noremap scope in 
+" in fact, there is remapping, but only of script locally defined remaps, in
+" this case <SID>TogBG. The <script> argument modifies the noremap scope in
 " this regard (and the noremenu below).
 nnoremap <script> <Plug>ToggleBackground <SID>TogBG
 inoremap <script> <Plug>ToggleBackground <SID>TogBG
