@@ -35,14 +35,10 @@ function! ToggleBackground()
 endfunction
 
 function! togglebg#map(mapActivation)
-    try
-        exe "silent! map  <unique> ".a:mapActivation." <Plug>ToggleBackground"
-        exe "silent! imap <unique> ".a:mapActivation." <Plug>ToggleBackground"
-    finally
-        return 0
-    endtry
+    exe "map  ".a:mapActivation." <Plug>ToggleBackground"
+    exe "imap ".a:mapActivation." <Plug>ToggleBackground"
 endfunction
 
-if !exists("no_plugin_maps") && !hasmapto('<Plug>ToggleBackground')
+if !exists("no_plugin_maps") && !hasmapto('<Plug>ToggleBackground') && mapcheck('<F5>').mapcheck('<F5>','i') ==# ''
     call togglebg#map("<F5>")
 endif
