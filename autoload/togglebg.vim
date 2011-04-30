@@ -12,9 +12,9 @@ let g:loaded_togglebg = 1
 " in fact, there is remapping, but only of script locally defined remaps, in 
 " this case <SID>TogBG. The <script> argument modifies the noremap scope in 
 " this regard (and the noremenu below).
-nnoremap <unique> <script> <Plug>ToggleBackground <SID>TogBG
-inoremap <unique> <script> <Plug>ToggleBackground <ESC><SID>TogBG<ESC>a
-vnoremap <unique> <script> <Plug>ToggleBackground <ESC><SID>TogBG<ESC>gv
+nnoremap <script> <Plug>ToggleBackground <SID>TogBG
+inoremap <script> <Plug>ToggleBackground <SID>TogBG
+vnoremap <script> <Plug>ToggleBackground <SID>TogBG
 nnoremenu <script> Window.Toggle\ Background <SID>TogBG
 inoremenu <script> Window.Toggle\ Background <ESC><SID>TogBG<ESC>a
 vnoremenu <script> Window.Toggle\ Background <ESC><SID>TogBG<ESC>gv
@@ -32,9 +32,7 @@ function! s:TogBG()
     endif
 endfunction
 
-if !exists(":ToggleBG")
-    command ToggleBG :call s:TogBG()
-endif
+command! ToggleBG :call s:TogBG()
 
 function! ToggleBackground()
     echo "Please update your ToggleBackground mapping. ':help togglebg' for information."
