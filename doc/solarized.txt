@@ -235,9 +235,9 @@ Visibility can make listchar entities more visible, but if one has set
 cursorline on, these same listchar values standout somewhat less due to the 
 background color of the cursorline. g:solarized_hitrail enables highlighting 
 of trailing spaces (only one of the listchar types, but a particularly 
-important one) while in the cursoline in a different manner in order to make 
+important one) while in the cursorline in a different manner in order to make 
 them more visible. This may not work consistently as Solarized is using 
-a pattern match than can be overridden by a more encompassing syntax-native 
+a pattern match that can be overridden by a more encompassing syntax-native 
 match such as a comment line.
 
 
