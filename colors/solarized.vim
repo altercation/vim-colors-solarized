@@ -531,6 +531,24 @@ else
 endif
 
 "}}}
+" Export variables in a global dictionary"{{{
+" ---------------------------------------------------------------------
+
+let s:varnames = [
+    \ 'none','back','base03','base02','base01','base00','base0','base1','base2','base3',
+    \ 'green','yellow','orange','red','magenta','violet','blue','cyan',
+    \ 'bold','bldi','undr','undb','undi','uopt','curl','ital','stnd','revr','revb','revbb','revbbu']
+
+let g:solarized_vars = {}
+for item in s:varnames
+    for prefix in ['fg_','bg_','fmt_']
+        if exists('s:' . prefix . item)
+            exe "let g:solarized_vars['" . prefix . item . "']=s:" . prefix . item
+        endif
+    endfor
+endfor
+
+"}}}
 " Basic highlighting"{{{
 " ---------------------------------------------------------------------
 " note that link syntax to avoid duplicate configuration doesn't work with the
