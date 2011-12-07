@@ -677,6 +677,8 @@ exe "hi! MatchParen"     .s:fmt_bold   .s:fg_red    .s:bg_base01
 hi! link SignColumn   LineNr
 hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
+hi! link ShowMarksHLo DiffAdd
+hi! link ShowMarksHLm DiffChange
 
 "}}}
 " vim syntax highlighting "{{{
