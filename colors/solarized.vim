@@ -686,10 +686,6 @@ hi! link PMenuSel DiffChange
 hi! link PMenuSbar DiffAdd 
 hi! link PMenuThumb DiffAdd
 
-" Brighter cursor and less confusing paren matching colors
-hi! link MatchParen IncSearch
-hi! link Cursor WildMenu
-
 "}}}
 " vim syntax highlighting "{{{
 " ---------------------------------------------------------------------
