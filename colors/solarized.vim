@@ -1176,3 +1176,5 @@ hi! link htmlArg Label
 " Better indication of current buffer
 hi! link StatusLine DiffChange
 hi! link StatusLineNC DiffAdd
+
+hi! VertSplit guifg=#002b36  guibg=#002b36
