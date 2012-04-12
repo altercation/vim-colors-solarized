@@ -36,8 +36,8 @@
 "     and unarchive the file.
 " 2.  Move `solarized.vim` to your `.vim/colors` directory.
 " 3.  Move each of the files in each subdirectories to the corresponding .vim
-"     subdirectory (e.g. autoload/togglebg.vim goes into your .vim/autoload 
-"     directory as .vim/autoload/togglebg.vim).
+"     subdirectory (e.g. plugin/togglebg.vim goes into your .vim/plugin
+"     directory as .vim/plugin/togglebg.vim).
 "
 " RECOMMENDED PATHOGEN INSTALLATION OPTION:
 " ---------------------------------------------------------------------
