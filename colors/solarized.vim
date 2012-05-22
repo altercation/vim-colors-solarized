@@ -589,7 +589,7 @@ exe "hi! Underlined"     .s:fmt_none   .s:fg_violet .s:bg_none
 exe "hi! Ignore"         .s:fmt_none   .s:fg_none   .s:bg_none
 "       *Ignore          left blank, hidden  |hl-Ignore|
 
-exe "hi! Error"          .s:fmt_bold   .s:fg_red    .s:bg_none
+exe "hi! Error"          .s:fmt_bold   .s:fg_none    .s:bg_red
 "       *Error           any erroneous construct
 
 exe "hi! Todo"           .s:fmt_bold   .s:fg_magenta.s:bg_none
@@ -606,7 +606,7 @@ elseif  (g:solarized_visibility=="low")
     exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base02 .s:bg_none
     exe "hi! NonText"    .s:fmt_bold   .s:fg_base02 .s:bg_none
 else
-    exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base00 .s:bg_base02
+    exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base00 .s:bg_none
     exe "hi! NonText"    .s:fmt_bold   .s:fg_base00 .s:bg_none
 endif
 exe "hi! StatusLine"     .s:fmt_none   .s:fg_base1  .s:bg_base02 .s:fmt_revbb
@@ -619,6 +619,7 @@ exe "hi! Search"         .s:fmt_revr   .s:fg_yellow .s:bg_none
 exe "hi! MoreMsg"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! ModeMsg"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! LineNr"         .s:fmt_none   .s:fg_base01 .s:bg_base02
+exe "hi! CursorLineNr"   .s:fmt_bold   .s:fg_base0  .s:bg_base02
 exe "hi! Question"       .s:fmt_bold   .s:fg_cyan   .s:bg_none
 if ( has("gui_running") || &t_Co > 8 )
     exe "hi! VertSplit"  .s:fmt_none   .s:fg_base00 .s:bg_base00
