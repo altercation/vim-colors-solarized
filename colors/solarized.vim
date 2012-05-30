@@ -611,7 +611,7 @@ else
 endif
 exe "hi! StatusLine"     .s:fmt_none   .s:fg_base1  .s:bg_base02 .s:fmt_revbb
 exe "hi! StatusLineNC"   .s:fmt_none   .s:fg_base00 .s:bg_base02 .s:fmt_revbb
-exe "hi! Visual"         .s:fmt_none   .s:fg_base01 .s:bg_base03 .s:fmt_revbb
+exe "hi! Visual"         .s:fmt_none   .s:fg_none   .s:bg_base02
 exe "hi! Directory"      .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! ErrorMsg"       .s:fmt_revr   .s:fg_red    .s:bg_none
 exe "hi! IncSearch"      .s:fmt_stnd   .s:fg_orange .s:bg_none
@@ -654,7 +654,6 @@ exe "hi! DiffDelete"     .s:fmt_none   .s:fg_red    .s:bg_base02
 exe "hi! DiffText"       .s:fmt_none   .s:fg_blue   .s:bg_base02 .s:sp_blue
     endif
 endif
-exe "hi! SignColumn"     .s:fmt_none   .s:fg_base0
 exe "hi! Conceal"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! SpellBad"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_red
 exe "hi! SpellCap"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_violet
@@ -673,6 +672,19 @@ exe "hi! ColorColumn"    .s:fmt_none   .s:fg_none   .s:bg_base02
 exe "hi! Cursor"         .s:fmt_none   .s:fg_base03 .s:bg_base0
 hi! link lCursor Cursor
 exe "hi! MatchParen"     .s:fmt_bold   .s:fg_red    .s:bg_base01
+
+" ShowMarks support, better looking SignColumn
+hi! link SignColumn   LineNr
+hi! link ShowMarksHLl DiffAdd
+hi! link ShowMarksHLu DiffChange
+hi! link ShowMarksHLo DiffAdd
+hi! link ShowMarksHLm DiffChange
+
+" Better looking popup menu (for omnicomplete)
+hi! link PMenu DiffAdd 
+hi! link PMenuSel DiffChange
+hi! link PMenuSbar DiffAdd 
+hi! link PMenuThumb DiffAdd
 
 "}}}
 " vim syntax highlighting "{{{
@@ -1115,3 +1127,51 @@ autocmd ColorScheme * if g:colors_name != "solarized" | silent! aunmenu Solarize
 "
 " vim:foldmethod=marker:foldlevel=0
 "}}}
+"
+"
+
+" Customizations by @skwp for better readability
+" If statements and def statements should look similar 
+" so you can see the flow 
+hi! link rubyDefine rubyControl
+
+" This is a better cursor
+hi! link Cursor VisualNOS
+
+" Search is way too distracting in original Solarized
+hi! link Search DiffAdd
+
+" Colors to make LustyJuggler more usable
+" the Question color in LustyJuggler is mapped to
+" the currently selected buffer.
+hi! clear Question
+hi! Question guifg=yellow
+
+hi! link TagListFileName  Question
+
+" For jasmine.vim
+hi! link specFunctions rubyDefine
+hi! link specMatcher rubyConstant
+hi! link specSpys rubyConstant
+
+" Ruby, slightly better colors for solarized
+hi! link rubyStringDelimiter rubyConstant
+hi! link rubyInterpolationDelimiter rubyConstant
+hi! link rubySymbol Structure
+
+" For R and other languages that use Delimiters, we don't want them red
+hi! link Delimiter Identifier
+hi! link rDollar Identifier
+
+" For vimscript, don' tlike red..
+hi! link vimMapModKey Operator
+hi! link vimNotation Label
+
+" Better json highlighting
+hi! link htmlArg Label
+
+" Better indication of current buffer
+hi! link StatusLine DiffChange
+hi! link StatusLineNC DiffAdd
+
+hi! VertSplit guifg=#002b36  guibg=#002b36
