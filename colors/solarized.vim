@@ -611,7 +611,7 @@ else
 endif
 exe "hi! StatusLine"     .s:fmt_none   .s:fg_base1  .s:bg_base02 .s:fmt_revbb
 exe "hi! StatusLineNC"   .s:fmt_none   .s:fg_base00 .s:bg_base02 .s:fmt_revbb
-exe "hi! Visual"         .s:fmt_none   .s:fg_base01 .s:bg_base03 .s:fmt_revbb
+exe "hi! Visual"         .s:fmt_none   .s:fg_none   .s:bg_base02
 exe "hi! Directory"      .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! ErrorMsg"       .s:fmt_revr   .s:fg_red    .s:bg_none
 exe "hi! IncSearch"      .s:fmt_stnd   .s:fg_orange .s:bg_none
@@ -1137,9 +1137,6 @@ hi! link rubyDefine rubyControl
 
 " This is a better cursor
 hi! link Cursor VisualNOS
-
-" This is a bit nicer visual selection
-hi! link Visual DiffChange
 
 " Search is way too distracting in original Solarized
 hi! link Search DiffAdd
