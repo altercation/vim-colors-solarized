@@ -24,6 +24,9 @@ details.
 ==============================================================================
 0. Install						*solarized-install*
 
+
+WITH PATHOGEN
+
 Note: I recommend using Tim Pope's pathogen plugin to install this 
 colorscheme. See https://github.com/tpope/vim-pathogen . If you've installed 
 pathogen properly you can install Solarized with the following commands, 
@@ -32,8 +35,25 @@ followed by the .vimrc configuration below.
 	$ cd ~/.vim/bundle
 	$ git clone https://github.com/altercation/vim-colors-solarized.git
 
-If you aren't using pathogen, you can use the following three steps to install 
-Solarized:
+
+WITH VUNDLE
+
+If you are using gmarik's vundle plugin, and assuming you have installed it
+correctly you can use Solarized as a Bundle by putting the following line
+into your `.vimrc`:
+
+	Bundle 'altercation/vim-colors-solarized'
+
+To make Vundle install the Bundle for you, you need to run :BundleInstall
+from within vim or issue the following command:
+
+	$ vim -c BundleInstall -c qa
+
+
+BY HAND
+
+If you aren't using either pathogen or vundle, you can use the following three
+steps to install Solarized:
 
 1.  Download the solarized distribution (available on the homepage above)
     and unarchive the file.
@@ -44,6 +64,8 @@ Solarized:
     subdirectory (e.g. autoload/togglebg.vim goes into your .vim/autoload
     directory as .vim/autoload/togglebg.vim).
 
+
+IN ANY CASE
 
 After installation, place the following lines in your .vimrc:
 
@@ -121,7 +143,7 @@ If you do use the custom terminal colors, solarized.vim should work out of
 the box for you. If you are using a terminal emulator that supports 256 
 colors and don't want to use the custom Solarized terminal colors, you will 
 need to use the degraded 256 colorscheme. To do so, simply add the following 
-line *before* the `colorschem solarized` line:
+line *before* the `colorscheme solarized` line:
 
     let g:solarized_termcolors=256
 
