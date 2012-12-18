@@ -372,6 +372,7 @@ if (has("gui_running") || g:solarized_termtrans == 0)
     let s:back        = s:base03
 else
     let s:back        = "NONE"
+    let s:base02      = "0"
 endif
 "}}}
 " Alternate light scheme "{{{
