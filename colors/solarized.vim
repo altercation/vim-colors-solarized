@@ -425,10 +425,10 @@ else
     let s:u           = ",underline"
 endif
 
-if g:solarized_italic == 0 || s:terminal_italic == 0
-    let s:i           = ""
-else
+if g:solarized_italic == 1 || s:terminal_italic == 1
     let s:i           = ",italic"
+else
+    let s:i           = ""
 endif
 "}}}
 " Highlighting primitives"{{{
