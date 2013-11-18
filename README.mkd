@@ -73,6 +73,12 @@ Installation
         
             $ mv vim-colors-solarized ~/.vim/bundle/
 
+### Option 3: Vundle installation
+
+1. Download and install [Vundle](https://github.com/gmarik/vundle)
+
+2. Add `Bundle "Solarised"` to your `.vimrc`
+
 ### Modify .vimrc
 
 After either Option 1 or Option 2 above, put the following two lines in your 
