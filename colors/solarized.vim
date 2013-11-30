@@ -27,7 +27,7 @@
 " ---------------------------------------------------------------------
 " INSTALLATION:
 " ---------------------------------------------------------------------
-" Two options for installation: manual or pathogen
+" Two options for installation: manual, vundle or pathogen(recommended)
 "
 " MANUAL INSTALLATION OPTION:
 " ---------------------------------------------------------------------
@@ -38,6 +38,31 @@
 " 3.  Move each of the files in each subdirectories to the corresponding .vim
 "     subdirectory (e.g. autoload/togglebg.vim goes into your .vim/autoload 
 "     directory as .vim/autoload/togglebg.vim).
+"
+" VUNDLE INSTALLATION OPTION:
+" ---------------------------------------------------------------------
+"
+" 1.  Download and install gmarik's Vundle from:
+"     https://github.com/gmarik/vundle  [Vundle]
+"
+" 2.  Put the following line into your `.vimrc`, but make sure it's after the
+"     Vundle initialisation section.
+"
+"         Bundle 'altercation/vim-colors-solarized'
+"
+" 3.  Now we only need to instruct Vundle to install the newly referenced Bundle.
+"     The `BundleInstall` command will directly install Solarized from it's GitHub
+"     repository into your `~/.vim/bundle` directory.
+"
+"     Here is how you do it:
+"
+"     a. **From the command line:**
+"
+"         vim -c BundleInstall -c qa
+"
+"     b. **From within vim itself:**
+"
+"         :BundleInstall
 "
 " RECOMMENDED PATHOGEN INSTALLATION OPTION:
 " ---------------------------------------------------------------------
@@ -529,6 +554,24 @@ else
     let s:sp_blue      = ""
     let s:sp_cyan      = ""
 endif
+
+"}}}
+" Export variables in a global dictionary"{{{
+" ---------------------------------------------------------------------
+
+let s:varnames = [
+    \ 'none','back','base03','base02','base01','base00','base0','base1','base2','base3',
+    \ 'green','yellow','orange','red','magenta','violet','blue','cyan',
+    \ 'bold','bldi','undr','undb','undi','uopt','curl','ital','stnd','revr','revb','revbb','revbbu']
+
+let g:solarized_vars = {}
+for item in s:varnames
+    for prefix in ['fg_','bg_','fmt_']
+        if exists('s:' . prefix . item)
+            exe "let g:solarized_vars['" . prefix . item . "']=s:" . prefix . item
+        endif
+    endfor
+endfor
 
 "}}}
 " Basic highlighting"{{{
