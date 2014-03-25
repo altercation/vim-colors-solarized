@@ -147,7 +147,7 @@ Set these in your vimrc file prior to calling the colorscheme.
 
 ### Option Details
 
-*   g:solarized_termcolors
+*   `g:solarized_termcolors`
 
     This is set to *16* by default, meaning that Solarized will attempt to use 
     the standard 16 colors of your terminal emulator. You will need to set 
@@ -155,7 +155,7 @@ Set these in your vimrc file prior to calling the colorscheme.
     importing one of the many colorscheme available for popular terminal 
     emulators and Xdefaults.
 
-*   g:solarized_termtrans
+*   `g:solarized_termtrans`
 
     If you use a terminal emulator with a transparent background and Solarized 
     isn't displaying the background color transparently, set this to 1 and 
@@ -166,24 +166,24 @@ Set these in your vimrc file prior to calling the colorscheme.
     default as this is almost always the best option. The only exception to 
     this is if the working terminfo file supports 256 colors (xterm-256color).
 
-*   g:solarized_degrade
+*   `g:solarized_degrade`
 
     For test purposes only; forces Solarized to use the 256 degraded color mode 
     to test the approximate color values for accuracy.
 
-*   g:solarized_bold | g:solarized_underline | g:solarized_italic
+*   `g:solarized_bold`, `g:solarized_underline`, `g:solarized_italic`
 
     If you wish to stop Solarized from displaying bold, underlined or 
     italicized typefaces, simply assign a zero value to the appropriate 
     variable, for example: `let g:solarized_italic=0`
 
-*   g:solarized_contrast
+*   `g:solarized_contrast`
 
     Stick with normal! It's been carefully tested. Setting this option to high 
     or low does use the same Solarized palette but simply shifts some values up 
     or down in order to expand or compress the tonal range displayed.
 
-*   g:solarized_visibility
+*   `g:solarized_visibility`
 
     Special characters such as trailing whitespace, tabs, newlines, when
     displayed using `:set list` can be set to one of three levels depending on 
