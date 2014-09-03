@@ -75,7 +75,7 @@ Installation
 
 ### Modify .vimrc
 
-After either Option 1 or Option 2 above, put the following two lines in your 
+After either Option 1 or Option 2 above, put the following three lines in your 
 .vimrc:
 
     syntax enable
