@@ -79,14 +79,14 @@ After either Option 1 or Option 2 above, put the following two lines in your
 .vimrc:
 
     syntax enable
-    set background=dark
     colorscheme solarized
+    set background=dark
 
 or, for the light background mode of Solarized:
 
     syntax enable
-    set background=light
     colorscheme solarized
+    set background=light
 
 I like to have a different background in GUI and terminal modes, so I can use 
 the following if-then. However, I find vim's background autodetection to be 
