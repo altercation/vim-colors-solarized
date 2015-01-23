@@ -137,7 +137,8 @@
 " Terminals that support italics
 let s:terms_italic=[
             \"rxvt",
-            \"gnome-terminal"
+            \"gnome-terminal",
+            \"st"
             \]
 " For reference only, terminals are known to be incomptible.
 " Terminals that are in neither list need to be tested.
