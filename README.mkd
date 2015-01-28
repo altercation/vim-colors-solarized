@@ -193,12 +193,12 @@ Toggle Background Function
 --------------------------
 
 Solarized comes with a Toggle Background plugin that by default will map to 
-<F5> if that mapping is available. If it is not available you will need to 
-either map the function manually or change your current <F5> mapping to 
+`<F5>` if that mapping is available. If it is not available you will need to 
+either map the function manually or change your current `<F5>` mapping to 
 something else.
 
 To set your own mapping in your .vimrc file, simply add the following line to 
-support normal, insert and visual mode usage, changing the "<F5>" value to the 
+support normal, insert and visual mode usage, changing the `"<F5>"` value to the 
 key or key combination you wish to use:
 
     call togglebg#map("<F5>")
