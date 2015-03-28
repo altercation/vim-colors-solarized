@@ -73,10 +73,32 @@ Installation
         
             $ mv vim-colors-solarized ~/.vim/bundle/
 
+### Option 3: Vundle installation
+
+1.  Dowload and install gmarik's [Vundle].
+
+2.  Next, add the line `Plugin 'altercation/vim-colors-solarized'` to your 
+    `.vimrc` between `call vundle#begin()` and `call vundle#end()`.
+
+        set nocompatible
+        filetype off
+        set rtp+=~/.vim/bundle/Vundle.vim
+        call vundle#begin()
+
+        Plugin 'gmarik/Vundle.vim'
+
+        Plugin 'altercation/vim-colors-solarized'
+
+        call vundle#end()
+        filetype plugin indent on
+
+3. Finally, run `:PluginInstall` from inside Vim or `vim +PluginInstall +qall` 
+   from the command line to install.
+
 ### Modify .vimrc
 
-After either Option 1 or Option 2 above, put the following two lines in your 
-.vimrc:
+After either Option 1, Option 2 or Option 3 above, put the following three 
+lines in your .vimrc:
 
     syntax enable
     set background=dark
@@ -118,7 +140,7 @@ If you do use the custom terminal colors, solarized.vim should work out of the
 box for you. If you are using a terminal emulator that supports 256 colors and 
 don't want to use the custom Solarized terminal colors, you will need to use 
 the degraded 256 colorscheme. To do so, simply add the following line *before* 
-the `colorschem solarized` line:
+the `colorscheme solarized` line:
 
     let g:solarized_termcolors=256
 
