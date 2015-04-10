@@ -763,6 +763,12 @@ exe "hi! lineAdded"         .s:fmt_bold .s:fg_green  .s:bg_base02
 exe "hi! lineModified"      .s:fmt_bold .s:fg_yellow .s:bg_base02
 exe "hi! lineRemoved"       .s:fmt_bold .s:fg_red    .s:bg_base02
 " }}}
+" Syntastic highlighting {{{
+exe "hi! SyntasticErrorSign"        .s:fmt_uopt   .s:fg_red     .s:bg_base02  .s:sp_base1
+exe "hi! SyntasticWarningSign"      .s:fmt_uopt   .s:fg_orange  .s:bg_base02  .s:sp_base1
+exe "hi! SyntasticStyleErrorSign"   .s:fmt_uopt   .s:fg_yellow  .s:bg_base02  .s:sp_base1
+exe "hi! SyntasticStyleWarningSign" .s:fmt_uopt   .s:fg_green   .s:bg_base02  .s:sp_base1
+" }}}
 " html highlighting "{{{
 " ---------------------------------------------------------------------
 exe "hi! htmlTag"           .s:fmt_none .s:fg_base01 .s:bg_none
