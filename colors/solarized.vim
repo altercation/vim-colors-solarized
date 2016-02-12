@@ -280,7 +280,7 @@ elseif (has("gui_running") && g:solarized_degrade == 1)
     let s:blue        = "#0087ff"
     let s:cyan        = "#00afaf"
     let s:green       = "#5f8700"
-elseif g:solarized_termcolors != 256 && &t_Co >= 16
+elseif g:solarized_termcolors != 256 && &t_Co >= 16 && (empty($CONEMUBUILD) || &term !=? 'xterm')
     let s:vmode       = "cterm"
     if !has('win32') 
         let s:base03      = "8"
