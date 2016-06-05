@@ -4,7 +4,7 @@
 "           (see this url for latest release & screenshots)
 " License:  OSI approved MIT license (see end of this file)
 " Created:  In the middle of the night
-" Modified: 2011 May 05
+" Modified: 2016 Jun 05
 "
 " Usage "{{{
 "
@@ -240,124 +240,103 @@ let colors_name = "solarized"
 " leave the hex values out entirely in that case and include only cterm colors)
 " We also check to see if user has set solarized (force use of the
 " neutral gray monotone palette component)
-if (has("gui_running") && g:solarized_degrade == 0)
-    let s:vmode       = "gui"
-    let s:base03      = "#002b36"
-    let s:base02      = "#073642"
-    let s:base01      = "#586e75"
-    let s:base00      = "#657b83"
-    let s:base0       = "#839496"
-    let s:base1       = "#93a1a1"
-    let s:base2       = "#eee8d5"
-    let s:base3       = "#fdf6e3"
-    let s:yellow      = "#b58900"
-    let s:orange      = "#cb4b16"
-    let s:red         = "#dc322f"
-    let s:magenta     = "#d33682"
-    let s:violet      = "#6c71c4"
-    let s:blue        = "#268bd2"
-    let s:cyan        = "#2aa198"
-    "let s:green       = "#859900" "original
-    let s:green       = "#719e07" "experimental
-elseif (has("gui_running") && g:solarized_degrade == 1)
+if g:solarized_degrade == 0
+    let s:gui_base03      = "#002b36"
+    let s:gui_base02      = "#073642"
+    let s:gui_base01      = "#586e75"
+    let s:gui_base00      = "#657b83"
+    let s:gui_base0       = "#839496"
+    let s:gui_base1       = "#93a1a1"
+    let s:gui_base2       = "#eee8d5"
+    let s:gui_base3       = "#fdf6e3"
+    let s:gui_yellow      = "#b58900"
+    let s:gui_orange      = "#cb4b16"
+    let s:gui_red         = "#dc322f"
+    let s:gui_magenta     = "#d33682"
+    let s:gui_violet      = "#6c71c4"
+    let s:gui_blue        = "#268bd2"
+    let s:gui_cyan        = "#2aa198"
+    "let s:gui_green       = "#859900" "original
+    let s:gui_green       = "#719e07" "experimental
+else
     " These colors are identical to the 256 color mode. They may be viewed
     " while in gui mode via "let g:solarized_degrade=1", though this is not
     " recommened and is for testing only.
-    let s:vmode       = "gui"
-    let s:base03      = "#1c1c1c"
-    let s:base02      = "#262626"
-    let s:base01      = "#4e4e4e"
-    let s:base00      = "#585858"
-    let s:base0       = "#808080"
-    let s:base1       = "#8a8a8a"
-    let s:base2       = "#d7d7af"
-    let s:base3       = "#ffffd7"
-    let s:yellow      = "#af8700"
-    let s:orange      = "#d75f00"
-    let s:red         = "#af0000"
-    let s:magenta     = "#af005f"
-    let s:violet      = "#5f5faf"
-    let s:blue        = "#0087ff"
-    let s:cyan        = "#00afaf"
-    let s:green       = "#5f8700"
-elseif g:solarized_termcolors != 256 && &t_Co >= 16
-    let s:vmode       = "cterm"
-    let s:base03      = "8"
-    let s:base02      = "0"
-    let s:base01      = "10"
-    let s:base00      = "11"
-    let s:base0       = "12"
-    let s:base1       = "14"
-    let s:base2       = "7"
-    let s:base3       = "15"
-    let s:yellow      = "3"
-    let s:orange      = "9"
-    let s:red         = "1"
-    let s:magenta     = "5"
-    let s:violet      = "13"
-    let s:blue        = "4"
-    let s:cyan        = "6"
-    let s:green       = "2"
-elseif g:solarized_termcolors == 256
-    let s:vmode       = "cterm"
-    let s:base03      = "234"
-    let s:base02      = "235"
-    let s:base01      = "239"
-    let s:base00      = "240"
-    let s:base0       = "244"
-    let s:base1       = "245"
-    let s:base2       = "187"
-    let s:base3       = "230"
-    let s:yellow      = "136"
-    let s:orange      = "166"
-    let s:red         = "124"
-    let s:magenta     = "125"
-    let s:violet      = "61"
-    let s:blue        = "33"
-    let s:cyan        = "37"
-    let s:green       = "64"
-else
-    let s:vmode       = "cterm"
-    let s:bright      = "* term=bold cterm=bold"
-"   let s:base03      = "0".s:bright
-"   let s:base02      = "0"
-"   let s:base01      = "2".s:bright
-"   let s:base00      = "3".s:bright
-"   let s:base0       = "4".s:bright
-"   let s:base1       = "6".s:bright
-"   let s:base2       = "7"
-"   let s:base3       = "7".s:bright
-"   let s:yellow      = "3"
-"   let s:orange      = "1".s:bright
-"   let s:red         = "1"
-"   let s:magenta     = "5"
-"   let s:violet      = "5".s:bright
-"   let s:blue        = "4"
-"   let s:cyan        = "6"
-"   let s:green       = "2"
-    let s:base03      = "DarkGray"      " 0*
-    let s:base02      = "Black"         " 0
-    let s:base01      = "LightGreen"    " 2*
-    let s:base00      = "LightYellow"   " 3*
-    let s:base0       = "LightBlue"     " 4*
-    let s:base1       = "LightCyan"     " 6*
-    let s:base2       = "LightGray"     " 7
-    let s:base3       = "White"         " 7*
-    let s:yellow      = "DarkYellow"    " 3
-    let s:orange      = "LightRed"      " 1*
-    let s:red         = "DarkRed"       " 1
-    let s:magenta     = "DarkMagenta"   " 5
-    let s:violet      = "LightMagenta"  " 5*
-    let s:blue        = "DarkBlue"      " 4
-    let s:cyan        = "DarkCyan"      " 6
-    let s:green       = "DarkGreen"     " 2
+    let s:gui_base03      = "#1c1c1c"
+    let s:gui_base02      = "#262626"
+    let s:gui_base01      = "#4e4e4e"
+    let s:gui_base00      = "#585858"
+    let s:gui_base0       = "#808080"
+    let s:gui_base1       = "#8a8a8a"
+    let s:gui_base2       = "#d7d7af"
+    let s:gui_base3       = "#ffffd7"
+    let s:gui_yellow      = "#af8700"
+    let s:gui_orange      = "#d75f00"
+    let s:gui_red         = "#af0000"
+    let s:gui_magenta     = "#af005f"
+    let s:gui_violet      = "#5f5faf"
+    let s:gui_blue        = "#0087ff"
+    let s:gui_cyan        = "#00afaf"
+    let s:gui_green       = "#5f8700"
+endif
 
+if g:solarized_termcolors != 256 && &t_Co >= 16
+    let s:term_base03      = "8"
+    let s:term_base02      = "0"
+    let s:term_base01      = "10"
+    let s:term_base00      = "11"
+    let s:term_base0       = "12"
+    let s:term_base1       = "14"
+    let s:term_base2       = "7"
+    let s:term_base3       = "15"
+    let s:term_yellow      = "3"
+    let s:term_orange      = "9"
+    let s:term_red         = "1"
+    let s:term_magenta     = "5"
+    let s:term_violet      = "13"
+    let s:term_blue        = "4"
+    let s:term_cyan        = "6"
+    let s:term_green       = "2"
+elseif g:solarized_termcolors == 256
+    let s:term_base03      = "234"
+    let s:term_base02      = "235"
+    let s:term_base01      = "239"
+    let s:term_base00      = "240"
+    let s:term_base0       = "244"
+    let s:term_base1       = "245"
+    let s:term_base2       = "187"
+    let s:term_base3       = "230"
+    let s:term_yellow      = "136"
+    let s:term_orange      = "166"
+    let s:term_red         = "124"
+    let s:term_magenta     = "125"
+    let s:term_violet      = "61"
+    let s:term_blue        = "33"
+    let s:term_cyan        = "37"
+    let s:term_green       = "64"
+else
+    let s:term_base03      = "DarkGray"      " 0*
+    let s:term_base02      = "Black"         " 0
+    let s:term_base01      = "LightGreen"    " 2*
+    let s:term_base00      = "LightYellow"   " 3*
+    let s:term_base0       = "LightBlue"     " 4*
+    let s:term_base1       = "LightCyan"     " 6*
+    let s:term_base2       = "LightGray"     " 7
+    let s:term_base3       = "White"         " 7*
+    let s:term_yellow      = "DarkYellow"    " 3
+    let s:term_orange      = "LightRed"      " 1*
+    let s:term_red         = "DarkRed"       " 1
+    let s:term_magenta     = "DarkMagenta"   " 5
+    let s:term_violet      = "LightMagenta"  " 5*
+    let s:term_blue        = "DarkBlue"      " 4
+    let s:term_cyan        = "DarkCyan"      " 6
+    let s:term_green       = "DarkGreen"     " 2
 endif
 "}}}
 " Formatting options and null values for passthrough effect "{{{
 " ---------------------------------------------------------------------
-    let s:none            = "NONE"
-    let s:none            = "NONE"
+    let s:gui_none        = "NONE"
+    let s:term_none       = "NONE"
     let s:t_none          = "NONE"
     let s:n               = "NONE"
     let s:c               = ",undercurl"
@@ -368,44 +347,70 @@ endif
 "}}}
 " Background value based on termtrans setting "{{{
 " ---------------------------------------------------------------------
-if (has("gui_running") || g:solarized_termtrans == 0)
-    let s:back        = s:base03
+if g:solarized_termtrans == 0
+    let s:gui_back         = s:gui_base03
+    let s:term_back        = s:term_base03
 else
-    let s:back        = "NONE"
+    let s:gui_back         = "NONE"
+    let s:term_back        = "NONE"
 endif
 "}}}
 " Alternate light scheme "{{{
 " ---------------------------------------------------------------------
 if &background == "light"
-    let s:temp03      = s:base03
-    let s:temp02      = s:base02
-    let s:temp01      = s:base01
-    let s:temp00      = s:base00
-    let s:base03      = s:base3
-    let s:base02      = s:base2
-    let s:base01      = s:base1
-    let s:base00      = s:base0
-    let s:base0       = s:temp00
-    let s:base1       = s:temp01
-    let s:base2       = s:temp02
-    let s:base3       = s:temp03
-    if (s:back != "NONE")
-        let s:back    = s:base03
+    let s:gui_temp03       = s:gui_base03
+    let s:gui_temp02       = s:gui_base02
+    let s:gui_temp01       = s:gui_base01
+    let s:gui_temp00       = s:gui_base00
+    let s:gui_base03       = s:gui_base3
+    let s:gui_base02       = s:gui_base2
+    let s:gui_base01       = s:gui_base1
+    let s:gui_base00       = s:gui_base0
+    let s:gui_base0        = s:gui_temp00
+    let s:gui_base1        = s:gui_temp01
+    let s:gui_base2        = s:gui_temp02
+    let s:gui_base3        = s:gui_temp03
+    if s:gui_back != "NONE"
+        let s:gui_back     = s:gui_base03
+    endif
+
+    let s:term_temp03      = s:term_base03
+    let s:term_temp02      = s:term_base02
+    let s:term_temp01      = s:term_base01
+    let s:term_temp00      = s:term_base00
+    let s:term_base03      = s:term_base3
+    let s:term_base02      = s:term_base2
+    let s:term_base01      = s:term_base1
+    let s:term_base00      = s:term_base0
+    let s:term_base0       = s:term_temp00
+    let s:term_base1       = s:term_temp01
+    let s:term_base2       = s:term_temp02
+    let s:term_base3       = s:term_temp03
+    if s:term_back != "NONE"
+        let s:term_back    = s:term_base03
     endif
 endif
 "}}}
 " Optional contrast schemes "{{{
 " ---------------------------------------------------------------------
 if g:solarized_contrast == "high"
-    let s:base01      = s:base00
-    let s:base00      = s:base0
-    let s:base0       = s:base1
-    let s:base1       = s:base2
-    let s:base2       = s:base3
-    let s:back        = s:back
+    let s:gui_base01       = s:gui_base00
+    let s:gui_base00       = s:gui_base0
+    let s:gui_base0        = s:gui_base1
+    let s:gui_base1        = s:gui_base2
+    let s:gui_base2        = s:gui_base3
+    let s:gui_back         = s:gui_back
+
+    let s:term_base01      = s:term_base00
+    let s:term_base00      = s:term_base0
+    let s:term_base0       = s:term_base1
+    let s:term_base1       = s:term_base2
+    let s:term_base2       = s:term_base3
+    let s:term_back        = s:term_back
 endif
 if g:solarized_contrast == "low"
-    let s:back        = s:base02
+    let s:gui_back         = s:gui_base02
+    let s:term_back        = s:term_base02
     let s:ou          = ",underline"
 endif
 "}}}
@@ -434,101 +439,80 @@ endif
 " Highlighting primitives"{{{
 " ---------------------------------------------------------------------
 
-exe "let s:bg_none      = ' ".s:vmode."bg=".s:none   ."'"
-exe "let s:bg_back      = ' ".s:vmode."bg=".s:back   ."'"
-exe "let s:bg_base03    = ' ".s:vmode."bg=".s:base03 ."'"
-exe "let s:bg_base02    = ' ".s:vmode."bg=".s:base02 ."'"
-exe "let s:bg_base01    = ' ".s:vmode."bg=".s:base01 ."'"
-exe "let s:bg_base00    = ' ".s:vmode."bg=".s:base00 ."'"
-exe "let s:bg_base0     = ' ".s:vmode."bg=".s:base0  ."'"
-exe "let s:bg_base1     = ' ".s:vmode."bg=".s:base1  ."'"
-exe "let s:bg_base2     = ' ".s:vmode."bg=".s:base2  ."'"
-exe "let s:bg_base3     = ' ".s:vmode."bg=".s:base3  ."'"
-exe "let s:bg_green     = ' ".s:vmode."bg=".s:green  ."'"
-exe "let s:bg_yellow    = ' ".s:vmode."bg=".s:yellow ."'"
-exe "let s:bg_orange    = ' ".s:vmode."bg=".s:orange ."'"
-exe "let s:bg_red       = ' ".s:vmode."bg=".s:red    ."'"
-exe "let s:bg_magenta   = ' ".s:vmode."bg=".s:magenta."'"
-exe "let s:bg_violet    = ' ".s:vmode."bg=".s:violet ."'"
-exe "let s:bg_blue      = ' ".s:vmode."bg=".s:blue   ."'"
-exe "let s:bg_cyan      = ' ".s:vmode."bg=".s:cyan   ."'"
+exe "let s:bg_none      = ' guibg=".s:gui_none   ." ctermbg=".s:term_none   ."'"
+exe "let s:bg_back      = ' guibg=".s:gui_back   ." ctermbg=".s:term_back   ."'"
+exe "let s:bg_base03    = ' guibg=".s:gui_base03 ." ctermbg=".s:term_base03 ."'"
+exe "let s:bg_base02    = ' guibg=".s:gui_base02 ." ctermbg=".s:term_base02 ."'"
+exe "let s:bg_base01    = ' guibg=".s:gui_base01 ." ctermbg=".s:term_base01 ."'"
+exe "let s:bg_base00    = ' guibg=".s:gui_base00 ." ctermbg=".s:term_base00 ."'"
+exe "let s:bg_base0     = ' guibg=".s:gui_base0  ." ctermbg=".s:term_base0  ."'"
+exe "let s:bg_base1     = ' guibg=".s:gui_base1  ." ctermbg=".s:term_base1  ."'"
+exe "let s:bg_base2     = ' guibg=".s:gui_base2  ." ctermbg=".s:term_base2  ."'"
+exe "let s:bg_base3     = ' guibg=".s:gui_base3  ." ctermbg=".s:term_base3  ."'"
+exe "let s:bg_green     = ' guibg=".s:gui_green  ." ctermbg=".s:term_green  ."'"
+exe "let s:bg_yellow    = ' guibg=".s:gui_yellow ." ctermbg=".s:term_yellow ."'"
+exe "let s:bg_orange    = ' guibg=".s:gui_orange ." ctermbg=".s:term_orange ."'"
+exe "let s:bg_red       = ' guibg=".s:gui_red    ." ctermbg=".s:term_red    ."'"
+exe "let s:bg_magenta   = ' guibg=".s:gui_magenta." ctermbg=".s:term_magenta."'"
+exe "let s:bg_violet    = ' guibg=".s:gui_violet ." ctermbg=".s:term_violet ."'"
+exe "let s:bg_blue      = ' guibg=".s:gui_blue   ." ctermbg=".s:term_blue   ."'"
+exe "let s:bg_cyan      = ' guibg=".s:gui_cyan   ." ctermbg=".s:term_cyan   ."'"
 
-exe "let s:fg_none      = ' ".s:vmode."fg=".s:none   ."'"
-exe "let s:fg_back      = ' ".s:vmode."fg=".s:back   ."'"
-exe "let s:fg_base03    = ' ".s:vmode."fg=".s:base03 ."'"
-exe "let s:fg_base02    = ' ".s:vmode."fg=".s:base02 ."'"
-exe "let s:fg_base01    = ' ".s:vmode."fg=".s:base01 ."'"
-exe "let s:fg_base00    = ' ".s:vmode."fg=".s:base00 ."'"
-exe "let s:fg_base0     = ' ".s:vmode."fg=".s:base0  ."'"
-exe "let s:fg_base1     = ' ".s:vmode."fg=".s:base1  ."'"
-exe "let s:fg_base2     = ' ".s:vmode."fg=".s:base2  ."'"
-exe "let s:fg_base3     = ' ".s:vmode."fg=".s:base3  ."'"
-exe "let s:fg_green     = ' ".s:vmode."fg=".s:green  ."'"
-exe "let s:fg_yellow    = ' ".s:vmode."fg=".s:yellow ."'"
-exe "let s:fg_orange    = ' ".s:vmode."fg=".s:orange ."'"
-exe "let s:fg_red       = ' ".s:vmode."fg=".s:red    ."'"
-exe "let s:fg_magenta   = ' ".s:vmode."fg=".s:magenta."'"
-exe "let s:fg_violet    = ' ".s:vmode."fg=".s:violet ."'"
-exe "let s:fg_blue      = ' ".s:vmode."fg=".s:blue   ."'"
-exe "let s:fg_cyan      = ' ".s:vmode."fg=".s:cyan   ."'"
+exe "let s:fg_none      = ' guifg=".s:gui_none   ." ctermfg=".s:term_none   ."'"
+exe "let s:fg_back      = ' guifg=".s:gui_back   ." ctermfg=".s:term_back   ."'"
+exe "let s:fg_base03    = ' guifg=".s:gui_base03 ." ctermfg=".s:term_base03 ."'"
+exe "let s:fg_base02    = ' guifg=".s:gui_base02 ." ctermfg=".s:term_base02 ."'"
+exe "let s:fg_base01    = ' guifg=".s:gui_base01 ." ctermfg=".s:term_base01 ."'"
+exe "let s:fg_base00    = ' guifg=".s:gui_base00 ." ctermfg=".s:term_base00 ."'"
+exe "let s:fg_base0     = ' guifg=".s:gui_base0  ." ctermfg=".s:term_base0  ."'"
+exe "let s:fg_base1     = ' guifg=".s:gui_base1  ." ctermfg=".s:term_base1  ."'"
+exe "let s:fg_base2     = ' guifg=".s:gui_base2  ." ctermfg=".s:term_base2  ."'"
+exe "let s:fg_base3     = ' guifg=".s:gui_base3  ." ctermfg=".s:term_base3  ."'"
+exe "let s:fg_green     = ' guifg=".s:gui_green  ." ctermfg=".s:term_green  ."'"
+exe "let s:fg_yellow    = ' guifg=".s:gui_yellow ." ctermfg=".s:term_yellow ."'"
+exe "let s:fg_orange    = ' guifg=".s:gui_orange ." ctermfg=".s:term_orange ."'"
+exe "let s:fg_red       = ' guifg=".s:gui_red    ." ctermfg=".s:term_red    ."'"
+exe "let s:fg_magenta   = ' guifg=".s:gui_magenta." ctermfg=".s:term_magenta."'"
+exe "let s:fg_violet    = ' guifg=".s:gui_violet ." ctermfg=".s:term_violet ."'"
+exe "let s:fg_blue      = ' guifg=".s:gui_blue   ." ctermfg=".s:term_blue   ."'"
+exe "let s:fg_cyan      = ' guifg=".s:gui_cyan   ." ctermfg=".s:term_cyan   ."'"
 
-exe "let s:fmt_none     = ' ".s:vmode."=NONE".          " term=NONE".    "'"
-exe "let s:fmt_bold     = ' ".s:vmode."=NONE".s:b.      " term=NONE".s:b."'"
-exe "let s:fmt_bldi     = ' ".s:vmode."=NONE".s:b.      " term=NONE".s:b."'"
-exe "let s:fmt_undr     = ' ".s:vmode."=NONE".s:u.      " term=NONE".s:u."'"
-exe "let s:fmt_undb     = ' ".s:vmode."=NONE".s:u.s:b.  " term=NONE".s:u.s:b."'"
-exe "let s:fmt_undi     = ' ".s:vmode."=NONE".s:u.      " term=NONE".s:u."'"
-exe "let s:fmt_uopt     = ' ".s:vmode."=NONE".s:ou.     " term=NONE".s:ou."'"
-exe "let s:fmt_curl     = ' ".s:vmode."=NONE".s:c.      " term=NONE".s:c."'"
-exe "let s:fmt_ital     = ' ".s:vmode."=NONE".s:i.      " term=NONE".s:i."'"
-exe "let s:fmt_stnd     = ' ".s:vmode."=NONE".s:s.      " term=NONE".s:s."'"
-exe "let s:fmt_revr     = ' ".s:vmode."=NONE".s:r.      " term=NONE".s:r."'"
-exe "let s:fmt_revb     = ' ".s:vmode."=NONE".s:r.s:b.  " term=NONE".s:r.s:b."'"
+exe "let s:fmt_none     = ' gui=NONE".          " term=NONE".    "'"
+exe "let s:fmt_bold     = ' gui=NONE".s:b.      " term=NONE".s:b."'"
+exe "let s:fmt_bldi     = ' gui=NONE".s:b.      " term=NONE".s:b."'"
+exe "let s:fmt_undr     = ' gui=NONE".s:u.      " term=NONE".s:u."'"
+exe "let s:fmt_undb     = ' gui=NONE".s:u.s:b.  " term=NONE".s:u.s:b."'"
+exe "let s:fmt_undi     = ' gui=NONE".s:u.      " term=NONE".s:u."'"
+exe "let s:fmt_uopt     = ' gui=NONE".s:ou.     " term=NONE".s:ou."'"
+exe "let s:fmt_curl     = ' gui=NONE".s:c.      " term=NONE".s:c."'"
+exe "let s:fmt_ital     = ' gui=NONE".s:i.      " term=NONE".s:i."'"
+exe "let s:fmt_stnd     = ' gui=NONE".s:s.      " term=NONE".s:s."'"
+exe "let s:fmt_revr     = ' gui=NONE".s:r.      " term=NONE".s:r."'"
+exe "let s:fmt_revb     = ' gui=NONE".s:r.s:b.  " term=NONE".s:r.s:b."'"
 " revbb (reverse bold for bright colors) is only set to actual bold in low 
 " color terminals (t_co=8, such as OS X Terminal.app) and should only be used 
 " with colors 8-15.
-exe "let s:fmt_revbb    = ' ".s:vmode."=NONE".s:r.s:bb.   " term=NONE".s:r.s:bb."'"
-exe "let s:fmt_revbbu   = ' ".s:vmode."=NONE".s:r.s:bb.s:u." term=NONE".s:r.s:bb.s:u."'"
+exe "let s:fmt_revbb    = ' gui=NONE".s:r.s:bb.   " term=NONE".s:r.s:bb."'"
+exe "let s:fmt_revbbu   = ' gui=NONE".s:r.s:bb.s:u." term=NONE".s:r.s:bb.s:u."'"
 
-if has("gui_running")
-    exe "let s:sp_none      = ' guisp=".s:none   ."'"
-    exe "let s:sp_back      = ' guisp=".s:back   ."'"
-    exe "let s:sp_base03    = ' guisp=".s:base03 ."'"
-    exe "let s:sp_base02    = ' guisp=".s:base02 ."'"
-    exe "let s:sp_base01    = ' guisp=".s:base01 ."'"
-    exe "let s:sp_base00    = ' guisp=".s:base00 ."'"
-    exe "let s:sp_base0     = ' guisp=".s:base0  ."'"
-    exe "let s:sp_base1     = ' guisp=".s:base1  ."'"
-    exe "let s:sp_base2     = ' guisp=".s:base2  ."'"
-    exe "let s:sp_base3     = ' guisp=".s:base3  ."'"
-    exe "let s:sp_green     = ' guisp=".s:green  ."'"
-    exe "let s:sp_yellow    = ' guisp=".s:yellow ."'"
-    exe "let s:sp_orange    = ' guisp=".s:orange ."'"
-    exe "let s:sp_red       = ' guisp=".s:red    ."'"
-    exe "let s:sp_magenta   = ' guisp=".s:magenta."'"
-    exe "let s:sp_violet    = ' guisp=".s:violet ."'"
-    exe "let s:sp_blue      = ' guisp=".s:blue   ."'"
-    exe "let s:sp_cyan      = ' guisp=".s:cyan   ."'"
-else
-    let s:sp_none      = ""
-    let s:sp_back      = ""
-    let s:sp_base03    = ""
-    let s:sp_base02    = ""
-    let s:sp_base01    = ""
-    let s:sp_base00    = ""
-    let s:sp_base0     = ""
-    let s:sp_base1     = ""
-    let s:sp_base2     = ""
-    let s:sp_base3     = ""
-    let s:sp_green     = ""
-    let s:sp_yellow    = ""
-    let s:sp_orange    = ""
-    let s:sp_red       = ""
-    let s:sp_magenta   = ""
-    let s:sp_violet    = ""
-    let s:sp_blue      = ""
-    let s:sp_cyan      = ""
-endif
+exe "let s:sp_none      = ' guisp=".s:gui_none   ."'"
+exe "let s:sp_back      = ' guisp=".s:gui_back   ."'"
+exe "let s:sp_base03    = ' guisp=".s:gui_base03 ."'"
+exe "let s:sp_base02    = ' guisp=".s:gui_base02 ."'"
+exe "let s:sp_base01    = ' guisp=".s:gui_base01 ."'"
+exe "let s:sp_base00    = ' guisp=".s:gui_base00 ."'"
+exe "let s:sp_base0     = ' guisp=".s:gui_base0  ."'"
+exe "let s:sp_base1     = ' guisp=".s:gui_base1  ."'"
+exe "let s:sp_base2     = ' guisp=".s:gui_base2  ."'"
+exe "let s:sp_base3     = ' guisp=".s:gui_base3  ."'"
+exe "let s:sp_green     = ' guisp=".s:gui_green  ."'"
+exe "let s:sp_yellow    = ' guisp=".s:gui_yellow ."'"
+exe "let s:sp_orange    = ' guisp=".s:gui_orange ."'"
+exe "let s:sp_red       = ' guisp=".s:gui_red    ."'"
+exe "let s:sp_magenta   = ' guisp=".s:gui_magenta."'"
+exe "let s:sp_violet    = ' guisp=".s:gui_violet ."'"
+exe "let s:sp_blue      = ' guisp=".s:gui_blue   ."'"
+exe "let s:sp_cyan      = ' guisp=".s:gui_cyan   ."'"
 
 "}}}
 " Basic highlighting"{{{
@@ -642,7 +626,7 @@ exe "hi! DiffChange"     .s:fmt_undr   .s:fg_yellow .s:bg_none   .s:sp_yellow
 exe "hi! DiffDelete"     .s:fmt_bold   .s:fg_red    .s:bg_none
 exe "hi! DiffText"       .s:fmt_undr   .s:fg_blue   .s:bg_none   .s:sp_blue
 else " normal
-    if has("gui_running")
+  if has("gui_running") || (exists('termguicolors') && &tgc)
 exe "hi! DiffAdd"        .s:fmt_bold   .s:fg_green  .s:bg_base02 .s:sp_green
 exe "hi! DiffChange"     .s:fmt_bold   .s:fg_yellow .s:bg_base02 .s:sp_yellow
 exe "hi! DiffDelete"     .s:fmt_bold   .s:fg_red    .s:bg_base02
