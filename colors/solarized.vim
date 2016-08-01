@@ -992,3 +992,22 @@ autocmd ColorScheme * if g:colors_name != "solarized" | silent! aunmenu Solarize
 "
 " vim:foldmethod=marker:foldlevel=0
 "}}}
+"
+if has('nvim')
+     let g:terminal_color_0 = s:base02
+     let g:terminal_color_1 = s:red
+     let g:terminal_color_2 = s:green
+     let g:terminal_color_3 = s:yellow
+     let g:terminal_color_4 = s:blue
+     let g:terminal_color_5 = s:magenta
+     let g:terminal_color_6 = s:cyan
+     let g:terminal_color_7 = s:base2
+     let g:terminal_color_8 = s:base03
+     let g:terminal_color_9 = s:orange
+     let g:terminal_color_10 = s:base01
+     let g:terminal_color_11 = s:base00
+     let g:terminal_color_12 = s:base0
+     let g:terminal_color_13 = s:violet
+     let g:terminal_color_14 = s:base1
+     let g:terminal_color_15 = s:base3
+endif
