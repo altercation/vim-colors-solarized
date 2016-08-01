@@ -134,27 +134,7 @@
 " Allow or disallow certain features based on current terminal emulator or 
 " environment.
 
-" Terminals that support italics
-let s:terms_italic=[
-            \"rxvt",
-            \"gnome-terminal"
-            \]
-" For reference only, terminals are known to be incomptible.
-" Terminals that are in neither list need to be tested.
-let s:terms_noitalic=[
-            \"iTerm.app",
-            \"Apple_Terminal"
-            \]
-if has("gui_running")
-    let s:terminal_italic=1 " TODO: could refactor to not require this at all
-else
-    let s:terminal_italic=0 " terminals will be guilty until proven compatible
-    for term in s:terms_italic
-        if $TERM_PROGRAM =~ term
-            let s:terminal_italic=1
-        endif
-    endfor
-endif
+let s:terminal_italic=1
 
 " }}}
 " Default option values"{{{
@@ -240,7 +220,7 @@ let colors_name = "solarized"
 " leave the hex values out entirely in that case and include only cterm colors)
 " We also check to see if user has set solarized (force use of the
 " neutral gray monotone palette component)
-if (has("gui_running") && g:solarized_degrade == 0)
+if (g:solarized_degrade == 0)
     let s:vmode       = "gui"
     let s:base03      = "#002b36"
     let s:base02      = "#073642"
@@ -259,7 +239,7 @@ if (has("gui_running") && g:solarized_degrade == 0)
     let s:cyan        = "#2aa198"
     "let s:green       = "#859900" "original
     let s:green       = "#719e07" "experimental
-elseif (has("gui_running") && g:solarized_degrade == 1)
+elseif (g:solarized_degrade == 1)
     " These colors are identical to the 256 color mode. They may be viewed
     " while in gui mode via "let g:solarized_degrade=1", though this is not
     " recommened and is for testing only.
@@ -280,78 +260,6 @@ elseif (has("gui_running") && g:solarized_degrade == 1)
     let s:blue        = "#0087ff"
     let s:cyan        = "#00afaf"
     let s:green       = "#5f8700"
-elseif g:solarized_termcolors != 256 && &t_Co >= 16
-    let s:vmode       = "cterm"
-    let s:base03      = "8"
-    let s:base02      = "0"
-    let s:base01      = "10"
-    let s:base00      = "11"
-    let s:base0       = "12"
-    let s:base1       = "14"
-    let s:base2       = "7"
-    let s:base3       = "15"
-    let s:yellow      = "3"
-    let s:orange      = "9"
-    let s:red         = "1"
-    let s:magenta     = "5"
-    let s:violet      = "13"
-    let s:blue        = "4"
-    let s:cyan        = "6"
-    let s:green       = "2"
-elseif g:solarized_termcolors == 256
-    let s:vmode       = "cterm"
-    let s:base03      = "234"
-    let s:base02      = "235"
-    let s:base01      = "239"
-    let s:base00      = "240"
-    let s:base0       = "244"
-    let s:base1       = "245"
-    let s:base2       = "187"
-    let s:base3       = "230"
-    let s:yellow      = "136"
-    let s:orange      = "166"
-    let s:red         = "124"
-    let s:magenta     = "125"
-    let s:violet      = "61"
-    let s:blue        = "33"
-    let s:cyan        = "37"
-    let s:green       = "64"
-else
-    let s:vmode       = "cterm"
-    let s:bright      = "* term=bold cterm=bold"
-"   let s:base03      = "0".s:bright
-"   let s:base02      = "0"
-"   let s:base01      = "2".s:bright
-"   let s:base00      = "3".s:bright
-"   let s:base0       = "4".s:bright
-"   let s:base1       = "6".s:bright
-"   let s:base2       = "7"
-"   let s:base3       = "7".s:bright
-"   let s:yellow      = "3"
-"   let s:orange      = "1".s:bright
-"   let s:red         = "1"
-"   let s:magenta     = "5"
-"   let s:violet      = "5".s:bright
-"   let s:blue        = "4"
-"   let s:cyan        = "6"
-"   let s:green       = "2"
-    let s:base03      = "DarkGray"      " 0*
-    let s:base02      = "Black"         " 0
-    let s:base01      = "LightGreen"    " 2*
-    let s:base00      = "LightYellow"   " 3*
-    let s:base0       = "LightBlue"     " 4*
-    let s:base1       = "LightCyan"     " 6*
-    let s:base2       = "LightGray"     " 7
-    let s:base3       = "White"         " 7*
-    let s:yellow      = "DarkYellow"    " 3
-    let s:orange      = "LightRed"      " 1*
-    let s:red         = "DarkRed"       " 1
-    let s:magenta     = "DarkMagenta"   " 5
-    let s:violet      = "LightMagenta"  " 5*
-    let s:blue        = "DarkBlue"      " 4
-    let s:cyan        = "DarkCyan"      " 6
-    let s:green       = "DarkGreen"     " 2
-
 endif
 "}}}
 " Formatting options and null values for passthrough effect "{{{
@@ -368,7 +276,7 @@ endif
 "}}}
 " Background value based on termtrans setting "{{{
 " ---------------------------------------------------------------------
-if (has("gui_running") || g:solarized_termtrans == 0)
+if (g:solarized_termtrans == 0)
     let s:back        = s:base03
 else
     let s:back        = "NONE"
@@ -490,45 +398,24 @@ exe "let s:fmt_revb     = ' ".s:vmode."=NONE".s:r.s:b.  " term=NONE".s:r.s:b."'"
 exe "let s:fmt_revbb    = ' ".s:vmode."=NONE".s:r.s:bb.   " term=NONE".s:r.s:bb."'"
 exe "let s:fmt_revbbu   = ' ".s:vmode."=NONE".s:r.s:bb.s:u." term=NONE".s:r.s:bb.s:u."'"
 
-if has("gui_running")
-    exe "let s:sp_none      = ' guisp=".s:none   ."'"
-    exe "let s:sp_back      = ' guisp=".s:back   ."'"
-    exe "let s:sp_base03    = ' guisp=".s:base03 ."'"
-    exe "let s:sp_base02    = ' guisp=".s:base02 ."'"
-    exe "let s:sp_base01    = ' guisp=".s:base01 ."'"
-    exe "let s:sp_base00    = ' guisp=".s:base00 ."'"
-    exe "let s:sp_base0     = ' guisp=".s:base0  ."'"
-    exe "let s:sp_base1     = ' guisp=".s:base1  ."'"
-    exe "let s:sp_base2     = ' guisp=".s:base2  ."'"
-    exe "let s:sp_base3     = ' guisp=".s:base3  ."'"
-    exe "let s:sp_green     = ' guisp=".s:green  ."'"
-    exe "let s:sp_yellow    = ' guisp=".s:yellow ."'"
-    exe "let s:sp_orange    = ' guisp=".s:orange ."'"
-    exe "let s:sp_red       = ' guisp=".s:red    ."'"
-    exe "let s:sp_magenta   = ' guisp=".s:magenta."'"
-    exe "let s:sp_violet    = ' guisp=".s:violet ."'"
-    exe "let s:sp_blue      = ' guisp=".s:blue   ."'"
-    exe "let s:sp_cyan      = ' guisp=".s:cyan   ."'"
-else
-    let s:sp_none      = ""
-    let s:sp_back      = ""
-    let s:sp_base03    = ""
-    let s:sp_base02    = ""
-    let s:sp_base01    = ""
-    let s:sp_base00    = ""
-    let s:sp_base0     = ""
-    let s:sp_base1     = ""
-    let s:sp_base2     = ""
-    let s:sp_base3     = ""
-    let s:sp_green     = ""
-    let s:sp_yellow    = ""
-    let s:sp_orange    = ""
-    let s:sp_red       = ""
-    let s:sp_magenta   = ""
-    let s:sp_violet    = ""
-    let s:sp_blue      = ""
-    let s:sp_cyan      = ""
-endif
+exe "let s:sp_none      = ' guisp=".s:none   ."'"
+exe "let s:sp_back      = ' guisp=".s:back   ."'"
+exe "let s:sp_base03    = ' guisp=".s:base03 ."'"
+exe "let s:sp_base02    = ' guisp=".s:base02 ."'"
+exe "let s:sp_base01    = ' guisp=".s:base01 ."'"
+exe "let s:sp_base00    = ' guisp=".s:base00 ."'"
+exe "let s:sp_base0     = ' guisp=".s:base0  ."'"
+exe "let s:sp_base1     = ' guisp=".s:base1  ."'"
+exe "let s:sp_base2     = ' guisp=".s:base2  ."'"
+exe "let s:sp_base3     = ' guisp=".s:base3  ."'"
+exe "let s:sp_green     = ' guisp=".s:green  ."'"
+exe "let s:sp_yellow    = ' guisp=".s:yellow ."'"
+exe "let s:sp_orange    = ' guisp=".s:orange ."'"
+exe "let s:sp_red       = ' guisp=".s:red    ."'"
+exe "let s:sp_magenta   = ' guisp=".s:magenta."'"
+exe "let s:sp_violet    = ' guisp=".s:violet ."'"
+exe "let s:sp_blue      = ' guisp=".s:blue   ."'"
+exe "let s:sp_cyan      = ' guisp=".s:cyan   ."'"
 
 "}}}
 " Basic highlighting"{{{
@@ -620,11 +507,7 @@ exe "hi! MoreMsg"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! ModeMsg"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! LineNr"         .s:fmt_none   .s:fg_base01 .s:bg_base02
 exe "hi! Question"       .s:fmt_bold   .s:fg_cyan   .s:bg_none
-if ( has("gui_running") || &t_Co > 8 )
-    exe "hi! VertSplit"  .s:fmt_none   .s:fg_base00 .s:bg_base00
-else
-    exe "hi! VertSplit"  .s:fmt_revbb  .s:fg_base00 .s:bg_base02
-endif
+exe "hi! VertSplit"  .s:fmt_none   .s:fg_base00 .s:bg_base00
 exe "hi! Title"          .s:fmt_bold   .s:fg_orange .s:bg_none
 exe "hi! VisualNOS"      .s:fmt_stnd   .s:fg_none   .s:bg_base02 .s:fmt_revbb
 exe "hi! WarningMsg"     .s:fmt_bold   .s:fg_red    .s:bg_none
@@ -642,19 +525,12 @@ exe "hi! DiffChange"     .s:fmt_undr   .s:fg_yellow .s:bg_none   .s:sp_yellow
 exe "hi! DiffDelete"     .s:fmt_bold   .s:fg_red    .s:bg_none
 exe "hi! DiffText"       .s:fmt_undr   .s:fg_blue   .s:bg_none   .s:sp_blue
 else " normal
-    if has("gui_running")
 exe "hi! DiffAdd"        .s:fmt_bold   .s:fg_green  .s:bg_base02 .s:sp_green
 exe "hi! DiffChange"     .s:fmt_bold   .s:fg_yellow .s:bg_base02 .s:sp_yellow
 exe "hi! DiffDelete"     .s:fmt_bold   .s:fg_red    .s:bg_base02
 exe "hi! DiffText"       .s:fmt_bold   .s:fg_blue   .s:bg_base02 .s:sp_blue
-    else
-exe "hi! DiffAdd"        .s:fmt_none   .s:fg_green  .s:bg_base02 .s:sp_green
-exe "hi! DiffChange"     .s:fmt_none   .s:fg_yellow .s:bg_base02 .s:sp_yellow
-exe "hi! DiffDelete"     .s:fmt_none   .s:fg_red    .s:bg_base02
-exe "hi! DiffText"       .s:fmt_none   .s:fg_blue   .s:bg_base02 .s:sp_blue
-    endif
 endif
-exe "hi! SignColumn"     .s:fmt_none   .s:fg_base0
+exe "hi! SignColumn"     .s:fmt_none   .s:fg_base0  .s:bg_base02  .s:sp_base0
 exe "hi! Conceal"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! SpellBad"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_red
 exe "hi! SpellCap"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_violet
@@ -669,6 +545,7 @@ exe "hi! TabLineFill"    .s:fmt_undr   .s:fg_base0  .s:bg_base02  .s:sp_base0
 exe "hi! TabLineSel"     .s:fmt_undr   .s:fg_base01 .s:bg_base2   .s:sp_base0  .s:fmt_revbbu
 exe "hi! CursorColumn"   .s:fmt_none   .s:fg_none   .s:bg_base02
 exe "hi! CursorLine"     .s:fmt_uopt   .s:fg_none   .s:bg_base02  .s:sp_base1
+exe "hi! CursorLineNr"   .s:fmt_uopt   .s:fg_none   .s:bg_base02
 exe "hi! ColorColumn"    .s:fmt_none   .s:fg_none   .s:bg_base02
 exe "hi! Cursor"         .s:fmt_none   .s:fg_base03 .s:bg_base0
 hi! link lCursor Cursor
@@ -701,7 +578,7 @@ exe "hi! vimSynType"        .s:fmt_none    .s:fg_cyan   .s:bg_none
 exe "hi! vimHiLink"         .s:fmt_none    .s:fg_blue   .s:bg_none
 exe "hi! vimHiGroup"        .s:fmt_none    .s:fg_blue   .s:bg_none
 exe "hi! vimGroup"          .s:fmt_undb    .s:fg_blue   .s:bg_none
-"}}}
+ "}}}
 " diff highlighting "{{{
 " ---------------------------------------------------------------------
 hi! link diffAdded Statement
@@ -1115,3 +992,22 @@ autocmd ColorScheme * if g:colors_name != "solarized" | silent! aunmenu Solarize
 "
 " vim:foldmethod=marker:foldlevel=0
 "}}}
+"
+if has('nvim')
+     let g:terminal_color_0 = s:base02
+     let g:terminal_color_1 = s:red
+     let g:terminal_color_2 = s:green
+     let g:terminal_color_3 = s:yellow
+     let g:terminal_color_4 = s:blue
+     let g:terminal_color_5 = s:magenta
+     let g:terminal_color_6 = s:cyan
+     let g:terminal_color_7 = s:base2
+     let g:terminal_color_8 = s:base03
+     let g:terminal_color_9 = s:orange
+     let g:terminal_color_10 = s:base01
+     let g:terminal_color_11 = s:base00
+     let g:terminal_color_12 = s:base0
+     let g:terminal_color_13 = s:violet
+     let g:terminal_color_14 = s:base1
+     let g:terminal_color_15 = s:base3
+endif
