@@ -137,6 +137,8 @@
 " Terminals that support italics
 let s:terms_italic=[
             \"rxvt",
+            \"tmux",
+            \"italic",
             \"gnome-terminal"
             \]
 " For reference only, terminals are known to be incomptible.
@@ -149,8 +151,8 @@ if has("gui_running")
     let s:terminal_italic=1 " TODO: could refactor to not require this at all
 else
     let s:terminal_italic=0 " terminals will be guilty until proven compatible
-    for term in s:terms_italic
-        if $TERM_PROGRAM =~ term
+    for testterm in s:terms_italic
+        if $TERM =~ testterm
             let s:terminal_italic=1
         endif
     endfor
@@ -538,7 +540,7 @@ endif
 
 exe "hi! Normal"         .s:fmt_none   .s:fg_base0  .s:bg_back
 
-exe "hi! Comment"        .s:fmt_ital   .s:fg_base01 .s:bg_none
+exe "hi! Comment"        .s:fg_base01 .s:bg_none    .s:fmt_ital
 "       *Comment         any comment
 
 exe "hi! Constant"       .s:fmt_none   .s:fg_cyan   .s:bg_none
