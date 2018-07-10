@@ -682,7 +682,6 @@ exe "hi! ColorColumn"    .s:fmt_none   .s:fg_none   .s:bg_base02
 exe "hi! Cursor"         .s:fmt_none   .s:fg_base03 .s:bg_base0
 hi! link lCursor Cursor
 exe "hi! MatchParen"     .s:fmt_bold   .s:fg_red    .s:bg_base03
-
 "}}}
 " vim syntax highlighting "{{{
 " ---------------------------------------------------------------------
