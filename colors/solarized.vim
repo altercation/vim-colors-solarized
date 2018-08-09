@@ -608,8 +608,8 @@ elseif  (g:solarized_visibility=="medium")
     exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base00 .s:bg_none
     exe "hi! NonText"    .s:fmt_bold   .s:fg_base00 .s:bg_none
 elseif  (g:solarized_visibility=="low")
-    exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base02 .s:bg_none
-    exe "hi! NonText"    .s:fmt_bold   .s:fg_base02 .s:bg_none
+    exe "hi! SpecialKey" .s:fmt_none   .s:fg_base01 .s:bg_none
+    exe "hi! NonText"    .s:fmt_none   .s:fg_base01 .s:bg_none
 else
     exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base00 .s:bg_base02
     exe "hi! NonText"    .s:fmt_bold   .s:fg_base00 .s:bg_none
@@ -634,7 +634,9 @@ exe "hi! Title"          .s:fmt_bold   .s:fg_orange .s:bg_none
 exe "hi! VisualNOS"      .s:fmt_stnd   .s:fg_none   .s:bg_base02 .s:fmt_revbb
 exe "hi! WarningMsg"     .s:fmt_bold   .s:fg_red    .s:bg_none
 exe "hi! WildMenu"       .s:fmt_none   .s:fg_base2  .s:bg_base02 .s:fmt_revbb
-if (g:solarized_visibility=="medium")
+if (g:solarized_visibility=="low")
+	exe "hi! Folded"         .s:fmt_bold   .s:fg_base0  .s:bg_base02  .s:sp_base03
+elseif (g:solarized_visibility=="medium")
 	exe "hi! Folded"         .s:fmt_bold   .s:fg_base0  .s:bg_base02  .s:sp_base03
 else
 	exe "hi! Folded"         .s:fmt_undb   .s:fg_base0  .s:bg_base02  .s:sp_base03
