@@ -137,6 +137,8 @@
 " Terminals that support italics
 let s:terms_italic=[
             \"rxvt",
+            \"tmux",
+            \"italic",
             \"gnome-terminal"
             \]
 " For reference only, terminals are known to be incomptible.
@@ -149,8 +151,8 @@ if has("gui_running")
     let s:terminal_italic=1 " TODO: could refactor to not require this at all
 else
     let s:terminal_italic=0 " terminals will be guilty until proven compatible
-    for term in s:terms_italic
-        if $TERM_PROGRAM =~ term
+    for testterm in s:terms_italic
+        if $TERM =~ testterm
             let s:terminal_italic=1
         endif
     endfor
@@ -538,7 +540,7 @@ endif
 
 exe "hi! Normal"         .s:fmt_none   .s:fg_base0  .s:bg_back
 
-exe "hi! Comment"        .s:fmt_ital   .s:fg_base01 .s:bg_none
+exe "hi! Comment"        .s:fg_base01 .s:bg_none    .s:fmt_ital
 "       *Comment         any comment
 
 exe "hi! Constant"       .s:fmt_none   .s:fg_cyan   .s:bg_none
@@ -602,9 +604,12 @@ exe "hi! Todo"           .s:fmt_bold   .s:fg_magenta.s:bg_none
 if      (g:solarized_visibility=="high")
     exe "hi! SpecialKey" .s:fmt_revr   .s:fg_red    .s:bg_none
     exe "hi! NonText"    .s:fmt_bold   .s:fg_red    .s:bg_none
+elseif  (g:solarized_visibility=="medium")
+    exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base00 .s:bg_none
+    exe "hi! NonText"    .s:fmt_bold   .s:fg_base00 .s:bg_none
 elseif  (g:solarized_visibility=="low")
-    exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base02 .s:bg_none
-    exe "hi! NonText"    .s:fmt_bold   .s:fg_base02 .s:bg_none
+    exe "hi! SpecialKey" .s:fmt_none   .s:fg_base01 .s:bg_none
+    exe "hi! NonText"    .s:fmt_none   .s:fg_base01 .s:bg_none
 else
     exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base00 .s:bg_base02
     exe "hi! NonText"    .s:fmt_bold   .s:fg_base00 .s:bg_none
@@ -629,7 +634,13 @@ exe "hi! Title"          .s:fmt_bold   .s:fg_orange .s:bg_none
 exe "hi! VisualNOS"      .s:fmt_stnd   .s:fg_none   .s:bg_base02 .s:fmt_revbb
 exe "hi! WarningMsg"     .s:fmt_bold   .s:fg_red    .s:bg_none
 exe "hi! WildMenu"       .s:fmt_none   .s:fg_base2  .s:bg_base02 .s:fmt_revbb
-exe "hi! Folded"         .s:fmt_undb   .s:fg_base0  .s:bg_base02  .s:sp_base03
+if (g:solarized_visibility=="low")
+	exe "hi! Folded"         .s:fmt_bold   .s:fg_base0  .s:bg_base02  .s:sp_base03
+elseif (g:solarized_visibility=="medium")
+	exe "hi! Folded"         .s:fmt_bold   .s:fg_base0  .s:bg_base02  .s:sp_base03
+else
+	exe "hi! Folded"         .s:fmt_undb   .s:fg_base0  .s:bg_base02  .s:sp_base03
+endif
 exe "hi! FoldColumn"     .s:fmt_none   .s:fg_base0  .s:bg_base02
 if      (g:solarized_diffmode=="high")
 exe "hi! DiffAdd"        .s:fmt_revr   .s:fg_green  .s:bg_none
@@ -672,8 +683,7 @@ exe "hi! CursorLine"     .s:fmt_uopt   .s:fg_none   .s:bg_base02  .s:sp_base1
 exe "hi! ColorColumn"    .s:fmt_none   .s:fg_none   .s:bg_base02
 exe "hi! Cursor"         .s:fmt_none   .s:fg_base03 .s:bg_base0
 hi! link lCursor Cursor
-exe "hi! MatchParen"     .s:fmt_bold   .s:fg_red    .s:bg_base01
-
+exe "hi! MatchParen"     .s:fmt_bold   .s:fg_red    .s:bg_none
 "}}}
 " vim syntax highlighting "{{{
 " ---------------------------------------------------------------------
