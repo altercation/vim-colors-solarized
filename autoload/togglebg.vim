@@ -26,9 +26,12 @@ tmenu ToolBar.togglebg Toggle light and dark background modes
 noremap <SID>TogBG  :call <SID>TogBG()<CR>
 
 function! s:TogBG()
-    let &background = ( &background == "dark"? "light" : "dark" )
     if exists("g:colors_name")
-        exe "colorscheme " . g:colors_name
+        let l:colors_name =  g:colors_name
+    endif
+    let &background = ( &background == "dark"? "light" : "dark" )
+    if exists("l:colors_name")
+        exe "colorscheme " . l:colors_name
     endif
 endfunction
 
