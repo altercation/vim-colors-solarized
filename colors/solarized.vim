@@ -221,6 +221,7 @@ call s:SetOption("visibility","normal")
 call s:SetOption("diffmode","normal")
 call s:SetOption("hitrail",0)
 call s:SetOption("menu",1)
+call s:SetOption("dark_patched",0)
 
 "}}}
 " Colorscheme initialization "{{{
@@ -407,6 +408,13 @@ endif
 if g:solarized_contrast == "low"
     let s:back        = s:base02
     let s:ou          = ",underline"
+endif
+"}}}
+" For Solarized Dark Patched "{{{
+" https://github.com/mbadolato/iTerm2-Color-Schemes#solarized-dark---patched
+if g:solarized_dark_patched == 1
+  let s:back = "NONE"
+  let s:base03 = "NONE"
 endif
 "}}}
 " Overrides dependent on user specified values and environment "{{{
