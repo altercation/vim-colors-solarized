@@ -159,6 +159,7 @@ g:solarized_contrast  =   "normal"|   "high" or "low"
 g:solarized_visibility=   "normal"|   "high" or "low"
 g:solarized_hitrail   =   0       |   1
 g:solarized_menu      =   1       |   0
+g:solarized_diffmode  =   "normal"|   "high" or "low"
 ------------------------------------------------
 
 
@@ -249,6 +250,14 @@ display related options, including contrast and visibility. This allows
 for an easy method of testing different values quickly before settling
 on a final assignment for your .vimrc. If you wish to turn off this menu,
 assign g:solarized_menu a value of 0.
+
+
+------------------------------------------------
+g:solarized_diffmode   =  "normal"|   "high" or "low"	*'solarized_diffmode'*
+------------------------------------------------
+normal uses a shadowed bg and colored fg for added/modified/deleted text
+high uses those colors as the bg and white fg for text (like vimdiff default)
+low uses no bg, but underlines diffed lines in addition to text fg color
 
 
  vim:tw=78:noet:ts=8:ft=help:norl:
