@@ -252,3 +252,5 @@ assign g:solarized_menu a value of 0.
 
 
  vim:tw=78:noet:ts=8:ft=help:norl:
+ good luck!
+ this is a test message added in fugui branch
